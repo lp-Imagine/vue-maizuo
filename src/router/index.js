@@ -1,27 +1,69 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+import home from '../views/home.vue'
+import film from '../views/film.vue'
+import login from '../views/login.vue'
+import cinema from '../views/cinema.vue'
+
+import center from '../views/home/center.vue'
+import cinemas from '../views/home/cinemas.vue'
+import films from '../views/home/films.vue'
+
+import future from '../views/home/films/future.vue'
+import nowplay from '../views/home/films/nowplay.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
 const router = new VueRouter({
-  routes
+  routes: [
+    {
+      path: '/',
+      component: home,
+      children: [
+        {
+          path: 'films',
+          component: films,
+          children: [
+            {
+              path: 'nowplay',
+              component: nowplay,
+              name: nowplay
+            },
+            {
+              path: 'future',
+              component: future,
+              name: future
+            }
+          ]
+        },
+        {
+          path: 'cinemas',
+          component: cinemas
+        },
+        {
+          path: 'center',
+          component: center
+        },
+        {
+          path: '',
+          redirect: '/films/nowplay'
+        }
+      ]
+    },
+    {
+      path: '/film/:id',
+      component: film
+    },
+    {
+      path: '/cinema/:id',
+      component: cinema
+    },
+    {
+      path: '/login',
+      component: login
+    }
+  ]
 })
 
 export default router
