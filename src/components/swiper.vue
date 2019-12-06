@@ -1,3 +1,4 @@
+//轮播图组件
 <template>
   <div class="swiper-container">
     <div class="swiper-wrapper">

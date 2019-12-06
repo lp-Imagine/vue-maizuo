@@ -24,26 +24,41 @@ const router = new VueRouter({
         {
           path: 'films',
           component: films,
+          meta: {
+            tabId: 1
+          },
           children: [
             {
               path: 'nowplay',
               component: nowplay,
-              name: nowplay
+              name: nowplay,
+              meta: {
+                tabId: 1
+              }
             },
             {
               path: 'future',
               component: future,
-              name: future
+              name: future,
+              meta: {
+                tabId: 1
+              }
             }
           ]
         },
         {
           path: 'cinemas',
-          component: cinemas
+          component: cinemas,
+          meta: {
+            tabId: 2
+          }
         },
         {
           path: 'center',
-          component: center
+          component: center,
+          meta: {
+            tabId: 4
+          }
         },
         {
           path: '',
@@ -56,7 +71,7 @@ const router = new VueRouter({
       component: film
     },
     {
-      path: '/cinema/:id',
+      path: '/cinema/:id/film',
       component: cinema
     },
     {

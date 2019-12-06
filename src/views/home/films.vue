@@ -1,16 +1,26 @@
 <template>
   <div class="page-banner">
-    <lpSwiper :slides="bannerList"></lpSwiper>
+    <!-- 轮播图 -->
+    <lpSwiper :slides="bannerList" class="swiper"></lpSwiper>
+
+    <!--table切换-->
+    <lp-tabs
+    :tabs="['正在热映', '即将上映']"></lp-tabs>
+
+    <!--电影列表-->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Swiper from '@/components/swiper'
+import TabCheck from '@/components/tabCheck'
 import { getBannerList } from '../../api/movies'
 export default {
   name: 'films',
   components: {
-    lpSwiper: Swiper
+    lpSwiper: Swiper,
+    lpTabs: TabCheck
   },
 
   data () {
@@ -34,4 +44,16 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.page-banner {
+  .swiper {
+    .swiper-pagination-bullets {
+      width: 170%;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #ffffff;
+    }
+  }
+}
+</style>
